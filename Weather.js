@@ -116,19 +116,20 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     temp: {
+        fontFamily: 'montserrat-medium',
         fontSize: 42,
         color: 'white'
     },
     title: {
         color: 'white',
         fontSize: 44,
-        fontWeight: '300',
+        fontFamily: 'montserrat-bold',
         marginBottom: 10,
         textAlign: "left"
     },
     subtitle: {
         color: 'white',
-        fontWeight: '600',
+        fontFamily: 'montserrat-medium',
         fontSize: 24,
         textAlign: "left"
     },

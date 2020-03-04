@@ -4,13 +4,23 @@ import Loading from './Loading';
 import Weather from './Weather';
 import * as Location from 'expo-location';
 import axios from 'axios';
+import * as Font from 'expo-font';
 
 const API_KEY = "af0adfd7b8a79dbdd3e2553a1d66be71";
 
 export default class extends React.Component {
   state ={
-    isLoading: true
+    isLoading: true,
+    isFontLoading: true
   };
+  getFont = async() => {
+    await Font.loadAsync({
+      'montserrat-regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+      'montserrat-medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+      'montserrat-bold': require('./assets/fonts/Montserrat-Bold.ttf')
+    });
+    this.setState({isFontLoading: false});
+  }
   getWeather = async(latitude, longitude) => {
     const {
       data: {
@@ -33,10 +43,11 @@ export default class extends React.Component {
   };
   componentDidMount(){
     this.getLocation();
+    this.getFont();
   }
   render(){
-    const {isLoading, temp, condition} = this.state;
-    return isLoading ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition}/>;
+    const {isLoading, isFontLoading, temp, condition} = this.state;
+    return (isLoading || isFontLoading) ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition}/>;
   }
 }
 
