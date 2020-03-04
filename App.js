@@ -47,7 +47,8 @@ export default class extends React.Component {
   }
   render(){
     const {isLoading, isFontLoading, temp, condition} = this.state;
-    return (isLoading || isFontLoading) ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition}/>;
+    if(isFontLoading) return null;
+    return isLoading ? <Loading /> : <Weather temp={Math.round(temp)} condition={condition}/>;
   }
 }
 
